@@ -1,1 +1,24 @@
+LeetCode Problems
+1. Given two sorted arrays nums1 and nums2 of size m and n respectively, return the median of the two sorted arrays.
+The overall run time complexity should be O(log (m+n)).
 
+Answer: 
+class Solution {
+    public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+    //Get the length for the new merged array and create new array
+        int mergedLength = nums1.length + nums2.length;
+        int[] nums3 = new int[mergedLength];
+        //Create copies of nums1 and nums2 and initialize them in your new array
+        System.arraycopy(nums1, 0, nums3, 0, nums1.length);  
+        System.arraycopy(nums2, 0, nums3, nums1.length, nums2.length); 
+        double median = 0;
+        Arrays.sort(nums3);
+        //Calculate for median when it has one median value or two median values
+        if (nums3.length % 2 == 0) {
+    median = ((double)nums3[nums3.length/2] + (double)nums3[nums3.length/2 - 1])/2;
+} else {
+    median = (double) nums3[nums3.length/2];
+        return median;
+        }
+    }
+}
