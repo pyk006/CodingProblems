@@ -107,3 +107,20 @@ class Solution {
         return haystack.indexOf(needle);
     }
 }
+
+6. Given a non-empty array of integers nums, every element appears twice except for one. Find that single one.
+You must implement a solution with a linear runtime complexity and use only constant extra space.
+
+class Solution {
+    public int singleNumber(int[] nums) {
+        List<Integer> listNumbers = Arrays.stream(nums)
+                .boxed()
+                .collect(Collectors.toList());
+        for (int i = 0; i < listNumbers.size(); i++) {
+            if (listNumbers.indexOf(listNumbers.get(i)) == listNumbers.lastIndexOf(listNumbers.get(i))) {
+                return listNumbers.get(i);
+            }
+        }
+        return 0;
+    }
+}
