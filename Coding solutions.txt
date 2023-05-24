@@ -124,3 +124,16 @@ class Solution {
         return 0;
     }
 }
+
+7. Write a function that takes the binary representation of an unsigned integer and returns the number of '1' bits it has (also known as the Hamming weight).
+
+public class Solution {
+    // you need to treat n as an unsigned value
+    public int hammingWeight(int n) {
+        String binaryString = Integer.toBinaryString(n);
+
+        String[] binaryStringArr = binaryString.split("");
+
+        return (int) Arrays.stream(binaryStringArr).filter(val -> val.equals("1")).count();
+    }
+}
