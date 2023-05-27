@@ -137,3 +137,78 @@ public class Solution {
         return (int) Arrays.stream(binaryStringArr).filter(val -> val.equals("1")).count();
     }
 }
+
+8. Given an array nums. We define a running sum of an array as runningSum[i] = sum(nums[0]…nums[i]). Return the running sum of nums.
+
+class Solution {
+    public int[] runningSum(int[] nums) {
+        int a = 0;
+        int[] sums = new int[nums.length];
+        for (int i = 0; i < nums.length; i++) {
+            sums[i] = a + nums[i];
+            a = a + nums[i];
+        }
+        return sums;
+    }
+}
+
+9. There is a programming language with only four operations and one variable X:
+
+++X and X++ increments the value of the variable X by 1.
+--X and X-- decrements the value of the variable X by 1.
+Initially, the value of X is 0.
+
+Given an array of strings operations containing a list of operations, return the final value of X after performing all the operations.
+
+class Solution {
+    public int finalValueAfterOperations(String[] operations) {
+        int count = 0;
+        for (int i = 0; i < operations.length; i++) {
+            if (operations[i].contains("--")) {
+                count -=1;
+            } else {
+                count +=1;
+            }
+        }
+        return count;
+    }
+}
+
+10. Given the array nums, for each nums[i] find out how many numbers in the array are smaller than it. That is, for each nums[i] you have to count the number of valid j's such that j != i and nums[j] < nums[i].
+Return the answer in an array.
+
+class Solution {
+    public int[] smallerNumbersThanCurrent(int[] nums) {
+        int[] numSmalls = new int[nums.length];
+        int count = 0;
+        for (int i = 0; i < nums.length; i++) {
+            for (int j = 0; j < nums.length; j++) {
+                if (nums[i] > nums[j]) {
+                    count+=1;
+                }
+            }
+            numSmalls[i] = count;
+            count = 0;
+        }
+        return numSmalls;
+    }
+}
+
+11. There are n kids with candies. You are given an integer array candies, where each candies[i] represents the number of candies the ith kid has, and an integer extraCandies, denoting the number of extra candies that you have.
+Return a boolean array result of length n, where result[i] is true if, after giving the ith kid all the extraCandies, they will have the greatest number of candies among all the kids, or false otherwise.
+Note that multiple kids can have the greatest number of candies.
+
+class Solution {
+    public List<Boolean> kidsWithCandies(int[] candies, int extraCandies) {
+        List<Boolean> listOfLargest = new ArrayList<>();
+        int max = Arrays.stream(candies).max().orElse(0);
+        for (int i = 0; i < candies.length; i++) {
+            if (candies[i] + extraCandies >= max) {
+                listOfLargest.add(true);
+            } else {
+                listOfLargest.add(false);
+            }
+        }
+        return listOfLargest;
+    }
+}
