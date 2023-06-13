@@ -243,3 +243,15 @@ class Solution {
          return listOfFactors.get(k - 1);
     }
 }
+
+14. Given an integer num, repeatedly add all its digits until the result has only one digit, and return it.
+
+class Solution {
+ public static int addDigits(int num) {
+        String[] nums = String.valueOf(num).split("");
+        while (nums.length > 1) {
+            nums = String.valueOf(Arrays.stream(nums).mapToInt(numInArr -> Integer.parseInt(numInArr)).sum()).split("");
+        }
+        return Integer.parseInt(String.join("", nums));
+    }
+}
