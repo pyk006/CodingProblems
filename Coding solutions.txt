@@ -306,3 +306,31 @@ class Solution {
         return checked.equals(reversedStr);
     }
 }
+
+18. Given an array nums of size n, return the majority element.
+The majority element is the element that appears more than ⌊n / 2⌋ times. You may assume that the majority element always exists in the array.
+
+ 
+
+class Solution {
+    public int majorityElement(int[] nums) {
+        Map<Integer, Integer> mapOfOccurences = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            if (!mapOfOccurences.containsKey(nums[i])) {
+                mapOfOccurences.put(nums[i], 1);
+            } else {
+                mapOfOccurences.put(nums[i], mapOfOccurences.get(nums[i]) + 1);
+            }
+        }
+        int max = Integer.MIN_VALUE;
+        int numToMajority = 0;
+        for (Integer num : mapOfOccurences.keySet()) {
+            if (mapOfOccurences.get(num) > max) {
+                max = mapOfOccurences.get(num);
+                numToMajority = num;
+            }
+        }
+        return numToMajority;
+        
+    }
+}
