@@ -475,3 +475,26 @@ class Solution {
         return (int) Arrays.stream(textArr).filter(word -> Arrays.stream(chars).noneMatch(word::contains)).count();
     }
 }
+
+27. Given two strings s and p, return an array of all the start indices of p's anagrams in s. You may return the answer in any order.
+An Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.
+
+class Solution {
+    public List<Integer> findAnagrams(String s, String p) {
+        int subLength = p.length();
+        List<Integer> listOfAnagram = new ArrayList<>();
+                char[] charsp = p.toCharArray();
+                Arrays.sort(charsp);
+                char[] charsub;
+        for (int i = 0; i < s.length(); i++) {
+            if (i + subLength <= s.length()) {
+                charsub = s.substring(i, i + subLength).toCharArray();
+                Arrays.sort(charsub);
+                if (Arrays.equals(charsub,charsp)) {
+                    listOfAnagram.add(i);
+                }
+        }
+     }
+             return listOfAnagram;
+    }
+}
