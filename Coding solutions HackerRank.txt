@@ -1,0 +1,35 @@
+1. Given an array of integers, calculate the ratios of its elements that are positive, negative, and zero. Print the decimal value of each fraction on a new line with  places after the decimal.
+
+    public static void plusMinus(List<Integer> arr) {
+    // Write your code here
+        int total = arr.size();
+        int positives = (int) arr.stream().filter(el -> el > 0).count();
+        int negatives = (int) arr.stream().filter(el -> el < 0).count();
+        int zeros = (int) arr.stream().filter(el -> el == 0).count();
+        int[] arrOfAll = new int[]{positives, negatives, zeros};
+        
+        for (int val : arrOfAll) {
+            System.out.println((double) val / total);
+        }
+        
+    }
+
+2. Given five positive integers, find the minimum and maximum values that can be calculated by summing exactly four of the five integers. 
+Then print the respective minimum and maximum values as a single line of two space-separated long integers.
+
+    public static void miniMaxSum(List<Integer> arr) {
+    int[] arrs = new int[arr.size()];
+
+    for (int i = 0; i < arr.size(); i++) {
+        arrs[i] = arr.get(i);
+    }
+    Arrays.sort(arrs);
+    BigInteger total = BigInteger.ZERO;
+    for (int num : arrs) {
+        total = total.add(BigInteger.valueOf(num));
+    }
+    BigInteger min = total.subtract(BigInteger.valueOf(arrs[arrs.length - 1]));
+    BigInteger max = total.subtract(BigInteger.valueOf(arrs[0]));
+    System.out.println(min + " " + max);
+
+    }
