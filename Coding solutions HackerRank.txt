@@ -69,3 +69,29 @@ Ignore case. Return either pangram or not pangram as appropriate.
         }
         return mapOfPangram.size() == 26 ? "pangram" : "not pangram";
     }
+
+5. Given a time in -hour AM/PM format, convert it to military (24-hour) time.
+Note: - 12:00:00AM on a 12-hour clock is 00:00:00 on a 24-hour clock.
+- 12:00:00PM on a 12-hour clock is 12:00:00 on a 24-hour clock.
+
+public static String timeConversion(String s) {
+    String[] split = s.split(":");
+    int hour = Integer.parseInt(split[0]);
+    String replaced = split[0];
+    String valueReplace = "";
+
+    if (split[2].contains("PM")) {
+        s = s.replace("PM", "");
+        if (hour != 12) {
+            valueReplace = String.valueOf(hour + 12);
+            s = s.replace(replaced, valueReplace);
+        }
+    } else {
+        s = s.replace("AM", "");
+        if (hour + 12 == 24) {
+            valueReplace = "00";
+            s = s.replace(replaced, valueReplace);
+        }
+    }
+    return s;
+}
