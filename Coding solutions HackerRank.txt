@@ -54,3 +54,18 @@ Then print the respective minimum and maximum values as a single line of two spa
         }
         return -1;
     }
+
+4. A pangram is a string that contains every letter of the alphabet. Given a sentence determine whether it is a pangram in the English alphabet. 
+Ignore case. Return either pangram or not pangram as appropriate.
+
+    public static String pangrams(String s) {
+    // Write your code here
+        Map<Character, Integer> mapOfPangram = new HashMap<>();
+        s = s.toLowerCase();
+        for (int i = 0; i < s.length(); i++) {
+            if (!mapOfPangram.containsKey(s.charAt(i)) && Character.isLetter(s.charAt(i))) {
+                mapOfPangram.put(s.charAt(i), 1);
+            }
+        }
+        return mapOfPangram.size() == 26 ? "pangram" : "not pangram";
+    }
