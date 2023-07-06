@@ -138,3 +138,22 @@ For example, the square matrix  is shown below:
     }
         return Math.abs(firstDiagonal - secondDiagonal);
    }
+
+8.     There is a large pile of socks that must be paired by color. Given an array of integers representing the color of each sock, determine how many pairs of socks with matching colors there are.
+
+public static int sockMerchant(int n, List<Integer> ar) {
+    // Write your code here
+    Map <Integer, Integer> mapOfPairs = new HashMap<>();
+    for (int i = 0; i < ar.size(); i++) {
+        if (!mapOfPairs.containsKey(ar.get(i))) {
+            mapOfPairs.put(ar.get(i), 1);
+        } else {
+            mapOfPairs.put(ar.get(i), mapOfPairs.get(ar.get(i)) + 1);
+        }
+    }
+    int count = 0;
+    for (Integer pairs : mapOfPairs.keySet()) {
+        count += (int) mapOfPairs.get(pairs) / 2;
+    }
+    return count;
+    }
