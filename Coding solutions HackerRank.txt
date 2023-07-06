@@ -33,3 +33,24 @@ Then print the respective minimum and maximum values as a single line of two spa
     System.out.println(min + " " + max);
 
     }
+
+3. Given an array of integers, where all elements but one occur twice, find the unique element.
+
+    public static int lonelyinteger(List<Integer> a) {
+    // Write your code here
+        Map<Integer, Integer> mapOfAll = new HashMap<>();
+        
+        for (int i = 0; i < a.size(); i++) {
+            if (!mapOfAll.containsKey(a.get(i))) {
+                mapOfAll.put(a.get(i), 1);
+            } else {
+                mapOfAll.put(a.get(i), mapOfAll.get(a.get(i)) + 1);
+            }
+        }
+        for (int val : mapOfAll.keySet()) {
+            if (mapOfAll.get(val) == 1) {
+                return val;
+            }
+        }
+        return -1;
+    }
