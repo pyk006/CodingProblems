@@ -723,3 +723,32 @@ class Solution {
         return absentCount >= 2 ? false : true;
     }
 }
+
+37. You are given two 0-indexed integer arrays nums and divisors.
+The divisibility score of divisors[i] is the number of indices j such that nums[j] is divisible by divisors[i].
+Return the integer divisors[i] with the maximum divisibility score. If there is more than one integer with the maximum score, return the minimum of them.
+
+import java.util.*;
+class Solution {
+    public int maxDivScore(int[] nums, int[] divisors) {
+        Map<Integer,Integer> listOfVals = new HashMap<>();
+        for (int i = 0; i < divisors.length; i++) {
+            listOfVals.put(divisors[i], 0);
+            for (int j = 0; j < nums.length; j++) {
+                if (nums[j] % divisors[i] == 0) {
+                    listOfVals.put(divisors[i], listOfVals.get(divisors[i]) + 1);
+                }
+            }
+        }
+        int max = Integer.MIN_VALUE;
+        int divisor = 0;
+        for (Integer val : listOfVals.keySet()) {
+
+            if (listOfVals.get(val) > max || listOfVals.get(val) == listOfVals.get(divisor) && val < divisor) {
+                max = listOfVals.get(val);
+                divisor = val;
+            }
+        }
+        return divisor;
+    }
+}
