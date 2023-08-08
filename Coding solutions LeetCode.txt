@@ -777,3 +777,20 @@ class Solution {
         return head;
     }
 }
+
+39. Given the head of a singly linked list, return true if it is a 
+palindrome or false otherwise.
+
+class Solution {
+    public boolean isPalindrome(ListNode head) {
+        List<Integer> listForPalindrome = new ArrayList<>();
+
+        while (head != null) {
+            listForPalindrome.add(head.val);
+            head = head.next;
+        }
+        List<Integer> listReverse = new ArrayList<>(listForPalindrome);
+        Collections.reverse(listReverse);
+        return listForPalindrome.equals(listReverse) ? true : false;
+    }
+}
