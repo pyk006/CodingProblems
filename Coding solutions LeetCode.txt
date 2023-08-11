@@ -826,3 +826,27 @@ class Solution {
         return dummy.next;
     }
 }
+
+42. Given the head of a sorted linked list, delete all duplicates such that each element appears only once. Return the linked list sorted as well.
+
+class Solution {
+    public ListNode deleteDuplicates(ListNode head) {
+    Map<Integer, Integer> mapDuplicates = new HashMap<>();
+    ListNode dummy = new ListNode(0);
+    dummy.next = head;
+    ListNode current = dummy.next;
+    ListNode prev = dummy;
+
+    while (current != null) {
+        if (!mapDuplicates.containsKey(current.val)) {
+            mapDuplicates.put(current.val, 1);
+            prev = current;
+        } else {
+            prev.next = current.next;
+        }
+        current = current.next;
+        }
+    
+    return dummy.next;
+    }
+}
