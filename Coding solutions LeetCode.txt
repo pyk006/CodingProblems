@@ -884,3 +884,23 @@ class Solution {
         return map.size() == set.size();
     }
 }
+
+45. You are given an array of strings names, and an array heights that consists of distinct positive integers. Both arrays are of length n.
+For each index i, names[i] and heights[i] denote the name and height of the ith person.
+Return names sorted in descending order by the people's heights.
+
+class Solution {
+    public String[] sortPeople(String[] names, int[] heights) {
+        Map<Integer, String> mapOfHeights = new HashMap<>();
+        for (int i = 0; i < names.length; i++) {
+            mapOfHeights.put(heights[i], names[i]);
+        }
+        String[] people = new String[heights.length];
+        List<Integer> listOfNums = new ArrayList<>(mapOfHeights.keySet());
+        listOfNums.sort(Collections.reverseOrder());
+        for (int i = 0; i < heights.length; i++) {
+            people[i] = mapOfHeights.get(listOfNums.get(i));
+        }
+        return people;
+    }
+}
