@@ -904,3 +904,24 @@ class Solution {
         return people;
     }
 }
+
+46. You are given an integer array nums. A number x is lonely when it appears only once, and no adjacent numbers (i.e. x + 1 and x - 1) appear in the array.
+Return all lonely numbers in nums. You may return the answer in any order.
+
+class Solution {
+    public List<Integer> findLonely(int[] nums) {
+        List<Integer> listOfTheLonely = new ArrayList<>();
+        Map<Integer, Integer> mapOfAllNums = new HashMap<>();
+
+        for (int num : nums) {
+            mapOfAllNums.put(num, mapOfAllNums.getOrDefault(num, 0) + 1);
+        }
+
+        for (Integer val : mapOfAllNums.keySet()) {
+            if (mapOfAllNums.get(val) == 1 && !mapOfAllNums.containsKey(val - 1) && !mapOfAllNums.containsKey(val + 1)) {
+                listOfTheLonely.add(val);
+            }
+        }
+        return listOfTheLonely;
+    }
+}
