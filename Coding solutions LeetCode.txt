@@ -1086,3 +1086,23 @@ class Solution {
         return stack.isEmpty();
     }
 }
+
+54. Given a string, write a function to check if it is a permutation of a palindrome.
+
+    public boolean permutationPalindrome(String s) {
+        Map<Character, Integer> charMap = new HashMap<>();
+        s = s.replace(" ", "").toLowerCase();
+        for (char ch : s.toCharArray()) {
+                ch = Character.toLowerCase(ch);
+                charMap.put(ch, charMap.getOrDefault(ch, 0) + 1);
+        }
+
+        int oddCount = 0;
+        for (int count : charMap.values()) {
+            if (count % 2 == 1) {
+                oddCount++;
+            }
+        }
+
+        return oddCount <= 1;
+    }
