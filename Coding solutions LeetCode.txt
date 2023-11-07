@@ -1166,3 +1166,41 @@ class Solution {
         }
         return true;
     }
+
+56. 4Sum Given an array nums of n integers, return an array of all the unique quadruplets [nums[a], nums[b], nums[c], nums[d]] such that:
+Explanation: Utilize 3sum logic into 4 sum O(N^3)
+class Solution {
+        public static List<List<Integer>> fourSum(int[] nums, int target) {
+            Arrays.sort(nums);
+            List<List<Integer>> listOf4Sum = new ArrayList<>();
+            
+            for (int i = 0; i < nums.length; i++) {
+                if (i == 0 || i > 0 && nums[i] != nums[i - 1]) {
+                long sumToFindTriplet = target - (long)nums[i];
+                for (int j = i + 1; j < nums.length; j++) {
+                    if (j == i + 1 || j > 1 && nums[j] != nums[j - 1]) {
+                    long complement = sumToFindTriplet - (long)nums[j];
+                    int start = j + 1;
+                    int end = nums.length - 1;
+                    while (start < end) {
+                        if ((long)nums[start] + (long)nums[end] == complement) {
+                            listOf4Sum.add(Arrays.asList(nums[i], nums[j], nums[start], nums[end]));
+                            while(start < end && nums[start] == nums[start+1]) start++;
+                            while (start < end && nums[end] == nums[end - 1]) end--;
+                            start++;
+                            end--;
+                        } else if (nums[start] + nums[end] > complement) {
+                            end--;
+                        } else {
+                            start++;
+                        }
+                    }
+                    }
+                }
+                }
+
+            }
+            return listOf4Sum;
+        
+    }
+}
