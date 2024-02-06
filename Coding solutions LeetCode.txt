@@ -1326,3 +1326,29 @@ class Solution {
     }
 }
 
+62. Given an array nums of distinct integers, return all the possible permutations. You can return the answer in any order.
+(Backtracking problem)
+
+class Solution {
+    public List<List<Integer>> permute(int[] nums) {
+        List<List<Integer>> listOfLists = new ArrayList<>();
+        backtrack(new ArrayList<>(), nums, listOfLists);
+        return listOfLists;
+    }
+
+    public void backtrack(List<Integer> current, int[] nums, List<List<Integer>> listOfLists) {
+        if (current.size() == nums.length) {
+            listOfLists.add(new ArrayList<>(current));
+            return;
+        }
+
+        for (int i = 0; i < nums.length; i++) {
+            if (current.contains(nums[i])) continue;
+            current.add(nums[i]);
+            backtrack(current, nums, listOfLists);
+            current.remove(current.size() - 1);
+        }
+    }
+
+}
+
