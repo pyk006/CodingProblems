@@ -1430,3 +1430,27 @@ class Solution {
     }
 }
 
+66. You are given an integer array nums consisting of n elements, and an integer k.
+Find a contiguous subarray whose length is equal to k that has the maximum average value and return this value. Any answer with a calculation error less than 10-5 will be accepted.
+(Window Sliding Technique) 
+class Solution {
+    public double findMaxAverage(int[] nums, int k) {
+        int left = 0;
+        double total = 0;
+        int length = 0;
+        double maximum = Integer.MIN_VALUE;
+
+        for (int right = 0; right < nums.length; right++) {
+            total += nums[right];
+            length++;
+            if (length >= k) {
+                maximum = Math.max(maximum, total);
+                total -= nums[left];
+                left++;
+                length--;
+            }
+        }
+        return maximum / k;
+    }
+}
+
